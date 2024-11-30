@@ -1,0 +1,513 @@
+.view-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .view-dialog {
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1;
+  }
+  
+  .view-header h2 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    padding: 0.5rem;
+  }
+  
+  .close-button:hover {
+    color: #333;
+  }
+  
+  .view-content {
+    padding: 1.5rem;
+  }
+  
+  .student-profile {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .avatar-container {
+    flex-shrink: 0;
+  }
+  
+  .large-avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  .student-info {
+    flex-grow: 1;
+  }
+  
+  .info-group {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .info-group label {
+    font-weight: 600;
+    min-width: 120px;
+    color: #666;
+  }
+  
+  .info-group span {
+    color: #333;
+  }
+  
+  .documents-section {
+    border-top: 1px solid #eee;
+    padding-top: 1.5rem;
+  }
+  
+  .documents-section h3 {
+    margin: 0 0 1rem 0;
+    color: #333;
+  }
+  
+  .documents-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .document-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f8f8f8;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+  }
+  
+  .document-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .document-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+  }
+  
+  .file-icon {
+    font-size: 1.5rem;
+  }
+  
+  .document-name {
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .document-date {
+    color: #666;
+    font-size: 0.875rem;
+  }
+  
+  .view-button {
+    background-color: #2196F3;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+  }
+  
+  .view-button:hover {
+    background-color: #1976D2;
+  }
+  
+  .no-documents {
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    padding: 2rem;
+    background-color: #f8f8f8;
+    border-radius: 6px;
+  }
+  
+  @media (max-width: 768px) {
+    .student-profile {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .document-item {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .document-info {
+      width: 100%;
+    }
+    
+    .view-button {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+
+  .large-avatar.clickable {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .large-avatar.clickable:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  
+
+
+
+
+
+
+
+
+  .document-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .delete-button {
+    padding: 4px 12px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+  }
+  
+  .delete-button:hover {
+    background-color: #cc0000;
+  }
+  
+  .delete-button:disabled {
+    background-color: #ffaaaa;
+    cursor: not-allowed;
+  }
+  
+  .document-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .document-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .file-icon {
+    font-size: 20px;
+  }
+  
+  .document-name {
+    font-weight: 500;
+  }
+  
+  .document-date {
+    color: #666;
+    font-size: 0.9em;
+  }
+
+
+
+
+
+
+
+
+
+
+  .documents-header {
+    margin-bottom: 1rem;
+  }
+  
+  .upload-container {
+    margin-bottom: 1rem;
+  }
+  
+  .file-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+  
+  .upload-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+  }
+  
+  .upload-button:hover {
+    background-color: #45a049;
+  }
+  
+  .upload-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    color: #f44336;
+    margin-top: 0.5rem;
+    font-size: 14px;
+  }
+
+
+
+
+  
+
+
+  .header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.refresh-button {
+    padding: 8px 16px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s;
+}
+
+.refresh-button:hover {
+    background-color: #357abd;
+    transform: scale(1.02);
+}
+
+.refresh-button:active {
+    background-color: #2d6da3;
+    transform: scale(0.98);
+}
+
+.document-item.deleting {
+    opacity: 0.7;
+    pointer-events: none;
+    position: relative;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.document-item.deleting::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: not-allowed;
+}
+
+.document-item.deleting .document-actions button {
+    cursor: not-allowed;
+}
+
+.delete-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    background-color: #ccc;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Add to src/styles/view.css */
+
+.document-summary {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summary-item label {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-bottom: 0.25rem;
+}
+
+.summary-item span {
+  font-weight: 600;
+  color: #495057;
+}
+
+.view-toggle {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.toggle-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #dee2e6;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toggle-button.active {
+  background: #007bff;
+  color: white;
+  border-color: #0056b3;
+}
+
+.document-group {
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.group-header {
+  background: #f8f9fa;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.group-header h4 {
+  margin: 0;
+  color: #495057;
+}
+
+.group-info {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.latest-version,
+.older-versions {
+  padding: 1rem;
+}
+
+.latest-version h5,
+.older-versions h5 {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.document-item.latest {
+  border: 2px solid #28a745;
+}
+
+.document-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.document-meta {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+/* Update existing styles */
+.document-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.document-item:hover {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.document-item.deleting {
+  opacity: 0.5;
+  background: #f8f9fa;
+}
+

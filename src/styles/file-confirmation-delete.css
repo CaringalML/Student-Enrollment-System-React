@@ -1,0 +1,138 @@
+.file-confirm-delete-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .file-confirm-delete-modal {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .file-confirm-delete-content {
+    text-align: center;
+  }
+  
+  .warning-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  
+  .file-confirm-delete-content h2 {
+    color: #dc2626;
+    margin: 0 0 16px 0;
+    font-size: 1.5rem;
+  }
+  
+  .file-confirm-delete-content p {
+    margin: 8px 0;
+    color: #4b5563;
+  }
+  
+  .file-name {
+    font-weight: 600;
+    color: #1f2937 !important;
+    word-break: break-all;
+  }
+  
+  .file-confirm-delete-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  
+  .cancel-button,
+  .confirm-button {
+    padding: 8px 24px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .cancel-button {
+    background-color: #f3f4f6;
+    border: 1px solid #d1d5db;
+    color: #4b5563;
+  }
+  
+  .cancel-button:hover {
+    background-color: #e5e7eb;
+  }
+  
+  .confirm-button {
+    background-color: #dc2626;
+    border: 1px solid #dc2626;
+    color: white;
+  }
+  
+  .confirm-button:hover {
+    background-color: #b91c1c;
+  }
+  
+  .cancel-button:disabled,
+  .confirm-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+
+
+
+
+
+
+  /* Add these to your existing styles */
+
+.deleting-state {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.confirm-button {
+  min-width: 100px; /* Ensure button doesn't resize during state change */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.confirm-button:disabled {
+  background-color: #e74c3c;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Optional: Add transition for smooth state change */
+.confirm-button {
+  transition: all 0.2s ease;
+}

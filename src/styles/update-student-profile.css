@@ -1,0 +1,427 @@
+/* src/styles/update-student-profile.css */
+.usp-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.usp-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.usp-avatar-section {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+    cursor: pointer;
+}
+
+.usp-avatar-container {
+    position: relative;
+    width: 250px;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.usp-avatar-container:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+    border-color: #4a90e2;
+}
+
+.usp-avatar-preview {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 250px;
+    display: block;
+}
+
+.usp-avatar-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #f6f7f9 0%, #ffffff 100%);
+    gap: 1rem;
+    padding: 2rem;
+}
+
+.usp-avatar-placeholder i {
+    background: linear-gradient(45deg, #4a90e2, #357abd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.usp-avatar-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.7) 100%
+    );
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.usp-avatar-container:hover .usp-avatar-overlay {
+    opacity: 1;
+}
+
+.usp-avatar-overlay span {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    border-radius: 6px;
+}
+
+.usp-upload-text {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.usp-upload-subtext {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.usp-hidden {
+    display: none;
+}
+
+.usp-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: relative;
+}
+
+.usp-form-group label {
+    font-weight: 500;
+    color: #374151;
+    font-size: 0.9rem;
+    margin-bottom: -0.25rem;
+}
+
+.usp-form-group input,
+.usp-form-group textarea,
+.usp-address-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    color: #1f2937;
+    background: #f9fafb;
+}
+
+.usp-form-group input:hover,
+.usp-form-group textarea:hover,
+.usp-address-input:hover {
+    border-color: #d1d5db;
+    background: #ffffff;
+}
+
+.usp-form-group input:focus,
+.usp-form-group textarea:focus,
+.usp-address-input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
+}
+
+.usp-form-group input.usp-error,
+.usp-form-group textarea.usp-error,
+.usp-address-input.usp-error {
+    border-color: #dc2626;
+    background: #fef2f2;
+}
+
+.usp-error-message {
+    color: #dc2626;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.usp-error-message::before {
+    content: "⚠️";
+    font-size: 0.9rem;
+}
+
+.usp-address-search-container {
+    position: relative;
+    width: 100%;
+}
+
+.usp-address-suggestions {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.usp-address-suggestion-item {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.usp-address-suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.usp-address-suggestion-item:hover {
+    background: #f9fafb;
+}
+
+.usp-searching-indicator {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.usp-searching-indicator::before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    border: 2px solid #e5e7eb;
+    border-top-color: #4a90e2;
+    border-radius: 50%;
+    animation: usp-spin 0.8s linear infinite;
+}
+
+.usp-map-container {
+    margin-top: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #e5e7eb;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.usp-location-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    z-index: 1000;
+    font-size: 0.875rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.usp-button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.usp-submit-button,
+.usp-cancel-button {
+    padding: 0.875rem 1.75rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    min-width: 120px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.usp-submit-button {
+    background: #4a90e2;
+    color: white;
+    box-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
+}
+
+.usp-submit-button:hover:not(:disabled) {
+    background: #357abd;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(74, 144, 226, 0.25);
+}
+
+.usp-cancel-button {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #e5e7eb;
+}
+
+.usp-cancel-button:hover:not(:disabled) {
+    background: #e5e7eb;
+    transform: translateY(-1px);
+}
+
+.usp-submit-button:disabled,
+.usp-cancel-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.usp-submit-button.usp-loading {
+    position: relative;
+    color: transparent;
+}
+
+.usp-submit-button.usp-loading::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin: -10px 0 0 -10px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: usp-spin 1s ease-in-out infinite;
+}
+
+.usp-message {
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.usp-message.usp-success {
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.usp-message.usp-success::before {
+    content: "✓";
+    font-weight: bold;
+}
+
+.usp-message.usp-error {
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.usp-message.usp-error::before {
+    content: "⚠️";
+}
+
+@keyframes usp-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.usp-address-suggestions {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+.usp-address-suggestions::-webkit-scrollbar {
+    width: 6px;
+}
+
+.usp-address-suggestions::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+.usp-address-suggestions::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+    .usp-container {
+        margin: 0;
+        padding: 1.5rem;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .usp-button-group {
+        flex-direction: column-reverse;
+        gap: 0.75rem;
+    }
+
+    .usp-submit-button,
+    .usp-cancel-button {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .usp-form-group input,
+    .usp-form-group textarea,
+    .usp-address-input {
+        font-size: 16px;
+    }
+
+    .usp-map-container {
+        height: 250px !important;
+    }
+
+    .usp-address-suggestions {
+        max-height: 150px;
+    }
+
+    .usp-address-suggestion-item {
+        padding: 0.6rem;
+        font-size: 0.85rem;
+    }
+}

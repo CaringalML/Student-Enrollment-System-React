@@ -1,0 +1,550 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.insert-student-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.insert-student-modal-container .modal-inner-content {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.insert-form-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.avatar-upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px; /* Adjusted width */
+}
+
+.avatar-upload-section .avatar-preview-container {
+  width: 250px; /* Larger preview */
+  height: 100%;
+  border: 2px dashed #ddd;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.avatar-upload-section .avatar-preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures full image display */
+}
+
+.student-details-section {
+  flex: 1;
+}
+
+.form-group-container {
+  margin-bottom: 15px;
+}
+
+.form-group-container label {
+  display: block;
+  font-size: 0.9em;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-top: 5px;
+}
+
+.action-button-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.submit-student-button,
+.cancel-student-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-student-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.cancel-student-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.submit-student-button:hover {
+  background-color: #45a049;
+}
+
+.cancel-student-button:hover {
+  background-color: #d32f2f;
+}
+
+.error-input {
+  border-color: #f44336;
+}
+
+.error-message {
+  color: #f44336;
+  font-size: 0.8em;
+  margin-top: 5px;
+}
+
+
+.file-preview-container {
+  margin-top: 10px;
+}
+
+.file-preview-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.file-preview-item {
+  padding: 5px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-top: 5px;
+  color: #333;
+}
+
+.file-icon {
+  width: 22px;  /* Adjust width as needed */
+  height: 22px; /* Adjust height as needed */
+  margin-right: 5px; /* Space between icon and filename */
+  transform: translateY(6px); /* Move the icon down by 2 pixels (adjust as needed) */
+}
+
+
+.insert-student-modal__submit-btn,
+.insert-student-modal__cancel-btn {
+padding: 10px 15px;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+transition: background-color 0.3s, transform 0.2s;
+font-weight: 600;
+min-width: 120px;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+
+.insert-student-modal__submit-btn {
+background-color: #00FFFF;
+color: white;
+box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
+}
+
+.insert-student-modal__cancel-btn {
+background-color: #f44336;
+color: white;
+box-shadow: 0 2px 4px rgba(244, 67, 54, 0.2);
+}
+
+.insert-student-modal__submit-btn:hover {
+background-color: #00cccc;
+transform: translateY(-1px);
+}
+
+.insert-student-modal__cancel-btn:hover {
+background-color: #d32f2f;
+transform: translateY(-1px);
+}
+
+.insert-student-modal__submit-btn:disabled,
+.insert-student-modal__cancel-btn:disabled {
+background-color: #cccccc;
+cursor: not-allowed;
+transform: none;
+box-shadow: none;
+}
+
+
+
+
+
+
+/*not use CSS */
+.remove-file-button {
+  background-color: #ff4d4d; /* Red color for the remove button */
+  color: white; /* White text color */
+  border: none; /* No border */
+  border-radius: 3px; /* Slightly smaller rounded corners */
+  padding: 2px 4px; /* Reduced padding for a smaller button */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  margin-left: 6px; /* Spacing to the left of the button */
+  font-size: 10px; /* Smaller font size */
+}
+
+.remove-file-button:hover {
+  background-color: #ff1a1a; /* Darker red on hover */
+}
+
+.remove-file-button:focus {
+  outline: none; /* Remove outline on focus */
+  box-shadow: 0 0 0 2px rgba(255, 77, 77, 0.5); /* Subtle shadow for focus */
+}
+
+
+
+
+
+
+
+
+
+.avatar-upload-section {
+position: relative;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.avatar-preview-container {
+position: relative;
+width: 200px; /* adjust as needed */
+height: 200px; /* adjust as needed */
+cursor: pointer; /* Makes it look clickable */
+}
+
+.avatar-preview-image {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.avatar-placeholder {
+position: relative;
+width: 100%;
+height: 100%;
+}
+
+.overlay-text {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+color: #ffffff;
+font-size: 16px;
+font-weight: bold;
+text-align: center;
+background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+padding: 5px;
+border-radius: 5px;
+}
+
+.hidden-file-input {
+display: none;
+}
+
+.error-message {
+color: red;
+margin-top: 5px;
+font-size: 14px;
+}
+
+
+
+
+
+
+.hidden-file-input {
+display: none; /* Hides the actual file input */
+}
+
+.file-upload-label {
+display: block; /* Allows for proper alignment and spacing */
+cursor: pointer; /* Makes the label clickable */
+}
+
+.file-upload-placeholder {
+border: 2px dashed #ccc; /* Styling for the drag and drop area */
+border-radius: 12px; /* Rounded corners */
+padding: 20px; /* Inner spacing */
+text-align: center; /* Centered text */
+background-color: #f9f9f9; /* Light background */
+}
+
+.file-upload-placeholder p {
+margin: 0; /* Remove default margin */
+}
+
+.file-preview-container {
+margin-top: 10px; /* Spacing above the file preview */
+}
+
+.file-preview-item {
+padding: 5px;
+background-color: #f9f9f9;
+border: 1px solid #ddd;
+border-radius: 6px;
+margin-top: 5px;
+color: #333;
+}
+
+.error-message {
+color: #f44336; /* Error message color */
+font-size: 0.8em; /* Smaller font size */
+margin-top: 5px; /* Space above error message */
+}
+
+
+
+
+.hidden-input {
+display: none; /* Hides the input */
+}
+
+.file-upload-placeholder {
+border: 2px dashed #ccc; /* Style for the drag-and-drop area */
+padding: 20px;
+text-align: center;
+cursor: pointer; /* Indicate that this area is clickable */
+}
+
+.file-upload-placeholder p {
+margin: 0; /* Remove default margin */
+font-size: 16px; /* Adjust font size as needed */
+color: #666; /* Adjust text color as needed */
+}
+
+
+
+.required-indicator {
+color: red; /* Change color to red */
+font-size: 0.9em; /* Smaller font size */
+margin-left: 5px; /* Space between input and indicator */
+}
+
+
+
+
+
+
+
+
+
+
+.webcam-container {
+width: 100%;
+max-width: 400px;
+margin: 0 auto;
+position: relative;
+}
+
+.webcam-preview {
+width: 100%;
+height: auto;
+border-radius: 8px;
+}
+
+.webcam-buttons {
+display: flex;
+gap: 10px;
+justify-content: center;
+margin-top: 10px;
+}
+
+.capture-button {
+background-color: #4CAF50;
+color: white;
+padding: 8px 16px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+
+.capture-button:hover {
+background-color: #45a049;
+}
+
+.camera-button {
+background-color: #2196F3;
+color: white;
+padding: 8px 16px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+margin-top: 10px;
+}
+
+.camera-button:hover {
+background-color: #1976D2;
+}
+
+.avatar-input-buttons {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 10px;
+}
+
+
+
+
+.avatar-preview-container:focus {
+outline: 2px solid #007bff;
+outline-offset: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+.avatar-upload-section {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 1rem;
+margin-bottom: 1.5rem;
+}
+
+.error-messages {
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
+width: 100%;
+}
+
+.error-message {
+color: #dc2626;
+font-size: 0.875rem;
+display: block;
+margin-top: 0.25rem;
+}
+
+.avatar-preview-container {
+cursor: pointer;
+position: relative;
+border: 2px dashed #ccc;
+padding: 1rem;
+border-radius: 8px;
+transition: border-color 0.3s ease;
+width: 320px;
+height: 320px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.avatar-preview-container:hover,
+.avatar-preview-container.drag-over {
+border-color: #2563eb;
+}
+
+.avatar-preview-container.error {
+border-color: #dc2626;
+}
+
+.avatar-preview-image {
+max-width: 100%;
+max-height: 100%;
+object-fit: contain;
+}
+
+.overlay-text {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+text-align: center;
+color: #6b7280;
+font-size: 0.875rem;
+width: 100%;
+padding: 1rem;
+}
+
+.overlay-text small {
+display: block;
+margin-top: 0.5rem;
+font-size: 0.75rem;
+color: #9ca3af;
+}
+
+.webcam-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 1rem;
+}
+
+.webcam-buttons {
+display: flex;
+gap: 1rem;
+}
+
+.capture-button,
+.camera-button {
+background-color: #2563eb;
+color: white;
+padding: 0.5rem 1rem;
+border-radius: 0.375rem;
+border: none;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.capture-button:hover,
+.camera-button:hover {
+background-color: #1d4ed8;
+}
+
+.cancel-button {
+background-color: #dc2626;
+color: white;
+padding: 0.5rem 1rem;
+border-radius: 0.375rem;
+border: none;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.cancel-button:hover {
+background-color: #b91c1c;
+}

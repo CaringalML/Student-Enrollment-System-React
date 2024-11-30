@@ -1,0 +1,127 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.warning-text {
+    color: #dc2626;
+    margin: 0 0 16px 0;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.modal-content p {
+    margin: 8px 0;
+    color: #4b5563;
+    text-align: center;
+}
+
+.table-container {
+    margin: 20px 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.confirmation-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.confirmation-table th,
+.confirmation-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #e5e7eb;
+}
+
+.confirmation-table th {
+    background-color: #f3f4f6;
+    color: #4b5563;
+    font-weight: 600;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.cancel-button,
+.confirm-button {
+    padding: 8px 24px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.cancel-button {
+    background-color: #f3f4f6;
+    border: 1px solid #d1d5db;
+    color: #4b5563;
+}
+
+.cancel-button:hover:not(:disabled) {
+    background-color: #e5e7eb;
+}
+
+.confirm-button {
+    background-color: #dc2626;
+    border: 1px solid #dc2626;
+    color: white;
+}
+
+.confirm-button:hover:not(:disabled) {
+    background-color: #b91c1c;
+}
+
+.deleting-state {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
+
+.cancel-button:disabled,
+.confirm-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

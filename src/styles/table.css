@@ -1,0 +1,277 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  padding: 20px;
+}
+
+/* Title Styling */
+.title-left {
+  text-align: left;
+  width: 90%;
+  max-width: 1200px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Container Styling */
+.student-table-container {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 1200px;
+}
+
+/* Header Styling */
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/* Search Input */
+#searchInput {
+  width: 250px;
+  height: 32px;
+  padding: 6px 25px 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+  background-size: 14px;
+}
+
+#searchInput:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 5px; /* Add margin to create space from the search bar */
+}
+
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0 2%; /* Adjusts horizontal space around the button */
+}
+
+
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+.table-wrapper {
+  max-height: 455px;
+  overflow-y: auto;
+  border-radius: 8px;
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.student-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #f4f4f4;
+}
+
+.student-table th {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.student-table td {
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.student-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.student-table td img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+/* Custom Scrollbar Styles */
+.table-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  border-radius: 4px;
+}
+
+.row-count {
+  font-size: 14px;
+  margin-top: 10px;
+  color: #555;
+}
+
+/* Disabled Button Styling */
+.delete-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+/* Flexbox container for buttons */
+.button-container {
+  display: flex;
+  align-items: center;
+  margin-left: 10px; /* Add margin to create space from the search bar */
+}
+
+
+.add-button {
+  background-color: #00FFFF;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 3px; /* move this button to the right without affecting the delete button */
+
+}
+
+.add-button:hover {
+  background-color: #00cccc;
+}
+
+.scrollable {
+  overflow-y: auto;
+  max-height: 300px; /* Set a max height for scrolling */
+}
+
+
+
+
+
+
+
+/* Add to src/styles/table.css */
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.update-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.update-button:hover {
+  background-color: #45a049;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-container {
+  background-color: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover {
+  color: #333;
+}
+
+.modal-content {
+  padding: 1rem;
+}
+
+/* Update existing table styles to accommodate the new button */
+.student-table td:last-child {
+  min-width: 120px;
+}

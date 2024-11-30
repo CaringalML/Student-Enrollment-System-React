@@ -1,0 +1,948 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Modal container styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.insert-student-modal-container {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-inner-content {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 95%;
+  max-width: 1200px;
+  max-height: 90vh;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Added for button positioning */
+}
+
+/* Form container with scroll */
+.insert-form-container {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  height: calc(90vh - 60px);
+  overflow: hidden; /* Changed from overflow-y: auto */
+  padding: 20px 20px 80px 20px; /* Added bottom padding for buttons */
+  position: relative;
+}
+
+/* Form Content Wrapper */
+.form-content-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  overflow-y: auto;
+  height: 100%;
+  padding-right: 10px;
+  padding-bottom: 150px; /* Increased padding to create space for buttons */
+  position: relative;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+  .form-content-wrapper {
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
+  }
+}
+
+
+/* Scrollbar styles */
+.form-content-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.form-content-wrapper::-webkit-scrollbar-track {
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+.form-content-wrapper::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 4px;
+}
+
+.form-content-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* Firefox scrollbar */
+.form-content-wrapper {
+  scrollbar-width: thin;
+  scrollbar-color: #bbb #f9f9f9;
+}
+
+
+
+/* Avatar section */
+.avatar-upload-section {
+  position: sticky;
+  top: 0;
+  flex: 0 0 320px;
+  min-width: 320px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 20px;
+  height: fit-content;
+}
+
+.avatar-preview-container {
+  width: 320px;
+  height: 320px;
+  border: 2px dashed #ddd;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.avatar-preview-container:hover {
+  border-color: #2196F3;
+}
+
+.avatar-preview-container.error {
+  border-color: #f44336;
+}
+
+.avatar-preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.overlay-text small {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+.avatar-input-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+
+
+
+/* Student Details Section */
+.student-details-section {
+  flex: 1;
+  min-width: 500px;
+  padding: 20px 0;
+}
+
+/* Form Group Styles */
+.form-group-container {
+  margin-bottom: 15px;
+}
+
+.form-group-container label {
+  display: block;
+  font-size: 0.9em;
+  color: #333;
+}
+
+/* Input Styles */
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-top: 5px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+/* Webcam Styles */
+.webcam-container {
+  width: 320px;
+  height: auto;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.webcam-preview {
+  width: 320px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.webcam-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Button Styles */
+.capture-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.capture-button:hover {
+  background-color: #45a049;
+}
+
+.camera-button {
+  background-color: #2196F3;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.camera-button:hover {
+  background-color: #1976D2;
+}
+
+.cancel-button {
+  background-color: #d3d3d3;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cancel-button:hover {
+  background-color: #808080;
+}
+
+/* Action Button Container - Updated for fixed positioning */
+.action-button-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 15px 20px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  z-index: 100;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.insert-student-modal__submit-btn,
+.insert-student-modal__cancel-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  font-weight: 600;
+  min-width: 120px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.insert-student-modal__submit-btn {
+  background-color: #00FFFF;
+  color: #f0f9ff;
+  box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
+}
+
+.insert-student-modal__cancel-btn {
+  background-color: #f44336;
+  color: white;
+  box-shadow: 0 2px 4px rgba(244, 67, 54, 0.2);
+}
+
+.insert-student-modal__submit-btn:hover {
+  background-color: #00cccc;
+  transform: translateY(-1px);
+}
+
+.insert-student-modal__cancel-btn:hover {
+  background-color: #d32f2f;
+  transform: translateY(-1px);
+}
+
+.insert-student-modal__submit-btn:disabled,
+.insert-student-modal__cancel-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Error States */
+.error-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  position: relative;
+}
+
+.error-message {
+  color: #f44336;
+  font-size: 0.8em;
+  margin-top: 5px;
+}
+
+.error-input {
+  border-color: #f44336 !important;
+}
+
+/* Required Indicator */
+.required-indicator {
+  color: red;
+  font-size: 0.9em;
+  margin-left: 5px;
+}
+
+/* File Input Styles */
+.hidden-input {
+  display: block !important;
+  width: 0.1px !important;
+  height: 0.1px !important;
+  opacity: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  z-index: -1 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.file-upload-placeholder {
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  position: relative;
+  margin-bottom: 20px; /* Increased margin */
+}
+.file-upload-placeholder:hover {
+  border-color: #2196F3;
+  background-color: #f0f9ff;
+}
+
+.file-upload-placeholder p {
+  margin: 0;
+  font-size: 16px;
+  color: #666;
+}
+
+.file-upload-placeholder::before {
+  content: '📎';
+  font-size: 20px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Error Message Container */
+.error-message-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(244, 67, 54, 0.9);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 0.9em;
+  z-index: 1000;
+  max-width: 80%;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+
+
+
+/* File Preview Styles */
+.file-preview-container {
+  margin-top: 15px;
+  margin-bottom: 40px; /* Added margin bottom */
+}
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.file-item:hover {
+  background-color: #f1f3f5;
+}
+
+.file-icon {
+  width: 22px;
+  height: 22px;
+  margin-right: 10px;
+}
+
+.remove-file-button {
+  margin-left: auto;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 2px 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 12px;
+}
+
+.remove-file-button:hover {
+  background-color: #ff1a1a;
+}
+
+.remove-file-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 77, 77, 0.5);
+}
+
+/* Map and Address Search Styles */
+.leaflet-container {
+  height: 300px;
+  width: 100%;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.address-map-container {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  height: 300px;
+  position: relative;
+}
+
+.address-search-container {
+  position: relative;
+  width: 100%;
+}
+
+.address-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.address-input:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+.address-loading-indicator {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #666;
+  background: white;
+  padding: 0 8px;
+}
+
+.address-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  animation: slideIn 0.2s ease-out;
+}
+
+.address-suggestion-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+.address-suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.address-suggestion-item:hover {
+  background-color: #f5f5f5;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 1024px) {
+  .modal-inner-content {
+    width: 95%;
+    max-width: 800px;
+    padding: 15px;
+  }
+
+  .form-content-wrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .insert-form-container {
+    flex-direction: column;
+    padding: 15px 15px 80px 15px;
+  }
+
+  .avatar-upload-section {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    flex: none;
+    margin-bottom: 20px;
+  }
+
+  .student-details-section {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .webcam-container,
+  .avatar-preview-container {
+    max-width: 280px;
+    height: 280px;
+  }
+
+  .webcam-preview {
+    width: 280px;
+    height: 280px;
+  }
+
+  .action-button-container {
+    padding: 10px 15px;
+  }
+
+  .insert-student-modal__submit-btn,
+  .insert-student-modal__cancel-btn {
+    padding: 8px 12px;
+    min-width: 100px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .modal-inner-content {
+    padding: 10px;
+  }
+
+  .action-button-container {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .insert-student-modal__submit-btn,
+  .insert-student-modal__cancel-btn {
+    width: 100%;
+  }
+
+  .webcam-container,
+  .avatar-preview-container {
+    max-width: 240px;
+    height: 240px;
+  }
+
+  .webcam-preview {
+    width: 240px;
+    height: 240px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { 
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .modal-overlay {
+    background: none;
+  }
+
+  .modal-inner-content {
+    box-shadow: none;
+  }
+
+  .action-button-container,
+  .webcam-container,
+  .avatar-input-buttons,
+  .remove-file-button {
+    display: none;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (forced-colors: active) {
+  .avatar-preview-container,
+  .file-upload-placeholder {
+    border: 2px solid ButtonBorder;
+  }
+
+  .error-message {
+    color: LinkText;
+  }
+}
+
+/* Loading States */
+.searching-indicator {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #666;
+}
+
+/* Focus States */
+.avatar-preview-container:focus,
+.file-upload-placeholder:focus,
+.address-input:focus {
+  outline: 2px solid #2196F3;
+  outline-offset: 2px;
+}
+
+/* Custom Scrollbar for Suggestions */
+.address-suggestions::-webkit-scrollbar {
+  width: 6px;
+}
+
+.address-suggestions::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.address-suggestions::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.address-suggestions::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+
+
+
+.view-button {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.view-button:hover {
+  background-color: #1976D2;
+}
+
+
+
+.error-container {
+  width: 100%;
+  margin-top: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.server-validation-errors {
+  background-color: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.error-header {
+  color: #dc3545;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e9ecef;
+  margin-bottom: 16px;
+}
+
+/* Quality Issues */
+.quality-issues {
+  margin: 12px 0;
+}
+
+.quality-issues ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quality-issue {
+  color: #dc3545;
+  font-size: 0.875rem;
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+}
+
+.quality-issue:before {
+  content: "•";
+  margin-right: 8px;
+  color: #dc3545;
+}
+
+/* Quality Assessment */
+.quality-assessment {
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.quality-assessment h4 {
+  color: #495057;
+  font-size: 0.9rem;
+  margin: 0 0 16px 0;
+  font-weight: 600;
+}
+
+.quality-item {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.quality-item:last-child {
+  border-bottom: none;
+}
+
+.quality-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.quality-status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Status colors */
+.quality-status.Excellent {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+.quality-status.Good {
+  background-color: #cfe2ff;
+  color: #084298;
+}
+
+.quality-status.Fair {
+  background-color: #fff3cd;
+  color: #664d03;
+}
+
+.quality-status.Poor {
+  background-color: #f8d7da;
+  color: #842029;
+}
+
+.quality-status.Unacceptable {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.quality-recommendation {
+  color: #6c757d;
+  font-size: 0.875rem;
+  margin: 8px 0 0 0;
+  line-height: 1.4;
+}
+
+/* Overall Quality */
+.overall-quality {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Warnings */
+.quality-warnings {
+  margin-top: 16px;
+  padding: 12px;
+  background-color: #fff3cd;
+  border-radius: 6px;
+}
+
+.quality-warnings h5 {
+  color: #664d03;
+  font-size: 0.875rem;
+  margin: 0 0 8px 0;
+}
+
+.quality-warnings ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quality-warnings li {
+  color: #664d03;
+  font-size: 0.875rem;
+  padding: 4px 0;
+}
+
+.quality-warnings li:before {
+  content: "⚠️";
+  margin-right: 8px;
+}
+
+
+
+
+/* reCAPTCHA Container */
+.recaptcha-container {
+  position: absolute;
+  bottom: 100px; /* Adjust as needed */
+  left: 17px; /* Adjust as needed */
+}
+
+/* Loading state and error message styling */
+.recaptcha-container > div:first-child {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.recaptcha-container .error-message {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 5px;
+}
