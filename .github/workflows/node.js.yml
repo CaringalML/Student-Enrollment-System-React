@@ -64,7 +64,7 @@ jobs:
 
       # Deploy to S3
       - name: Deploy to S3
-        run: aws s3 sync ./build s3://caringaldevops --delete
+        run: aws s3 sync ./build s3://caringaldevops/react-build --delete
 
       # Invalidate CloudFront
       - name: Invalidate CloudFront
