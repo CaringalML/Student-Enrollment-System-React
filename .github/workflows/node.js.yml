@@ -1,0 +1,72 @@
+name: React CI/CD
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      # Check for node_modules first
+      - name: Check Dependencies
+        id: check-deps
+        run: |
+          if [ ! -d "node_modules" ]; then
+            echo "❌ node_modules directory is missing"
+            echo "missing_dependencies=1" >> $GITHUB_OUTPUT
+          else
+            echo "✅ node_modules directory exists"
+            echo "missing_dependencies=0" >> $GITHUB_OUTPUT
+          fi
+
+      # Install dependencies if missing
+      - name: Install Dependencies
+        if: steps.check-deps.outputs.missing_dependencies == 1
+        run: npm ci
+
+      # Create .env file with secrets
+      - name: Create .env file
+        run: |
+          touch .env
+          echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" >> .env
+        env:
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+
+      # Build the app
+      - name: Build
+        run: npm run build
+        env:
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+
+      # Configure AWS Credentials
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1  # Change to your AWS region
+
+      # Deploy to S3
+      - name: Deploy to S3
+        run: aws s3 sync ./build s3://enrollment-caringal --delete
+
+      # Invalidate CloudFront
+      - name: Invalidate CloudFront
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
