@@ -18,7 +18,7 @@ const AvatarModal = ({ imageUrl, isOpen, onClose }) => {
     }
   }, [isOpen]);
 
-  // Handle mouse wheel zoom
+  // Handle mouse wheel zooms
   const handleWheel = useCallback((e) => {
     e.preventDefault();
     const delta = e.deltaY * -0.002;
